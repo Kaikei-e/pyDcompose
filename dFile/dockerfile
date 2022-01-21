@@ -1,0 +1,10 @@
+FROM python:3.10.2-buster
+
+RUN apt update -y && \
+apt upgrade -y 
+
+
+ADD ./apps /apps
+
+EXPOSE 9020
+

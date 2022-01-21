@@ -1,0 +1,14 @@
+version: '3'
+services:
+  python:
+    build: ./dFile
+    volumes: 
+      - ./dFile/apps:/apps
+    stdin_open: true
+    tty: true
+    working_dir: /apps
+    command:  /bin/bash
+    environment:
+      TZ: Asia/Tokyo
+    ports:
+      - "9020:9020"
