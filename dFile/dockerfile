@@ -1,6 +1,6 @@
 FROM python:3.10.2
 
-RUN apt-get update
+RUN apt-get update -y
 
 # python ライブラリのインストール
 RUN python -m pip install pandas
@@ -8,3 +8,20 @@ RUN python -m pip install numpy
 RUN python -m pip install matplotlib
 RUN python -m pip install jupyterlab
 RUN python -m pip install notebook
+
+RUN apt-get install -y zlib1g-dev libffi-dev libgmp-dev wget
+RUN apt update -y
+
+RUN mkdir /usr/local/bin/opam
+
+RUN sh -c "$(curl -sL https://raw.githubusercontent.com/ocaml/opam/master/shell/install.sh)"
+RUN opam init
+
+
+
+RUN pip install jupyter
+RUN opam install jupyter
+RUN grep topfind ~/.ocamlinit || echo '#use "topfind";;' >> ~/.ocamlinit  # For using '#require' directive
+RUN grep Topfind.log ~/.ocamlinit || echo 'Topfind.log:=ignore;;' >> ~/.ocamlinit  # Suppress logging of topfind (recommended but not necessary)
+RUN ocaml-jupyter-opam-genspec
+RUN jupyter kernelspec install [ --user ] --name "ocaml-jupyter-$(opam var switch)" "$(opam var share)/jupyter"
