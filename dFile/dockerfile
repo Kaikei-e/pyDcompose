@@ -1,10 +1,10 @@
-FROM python:3.10.2-buster
+FROM python:3.10.2
 
-RUN apt update -y && \
-apt upgrade -y 
+RUN apt-get update
 
-
-ADD ./apps /apps
-
-EXPOSE 9020
-
+# python ライブラリのインストール
+RUN python -m pip install pandas
+RUN python -m pip install numpy
+RUN python -m pip install matplotlib
+RUN python -m pip install jupyterlab
+RUN python -m pip install notebook
