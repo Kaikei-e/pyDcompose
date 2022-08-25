@@ -1,16 +1,18 @@
 FROM python:3.10-alpine
 
-RUN apt-get update -y
 
-# python ライブラリのインストール
-RUN python -m pip install pandas
-RUN python -m pip install numpy
-RUN python -m pip install matplotlib
-RUN python -m pip install jupyterlab
-RUN python -m pip install notebook
+ADD ./apps /apps
+# RUN apt-get update -y
 
-RUN apt-get install -y zlib1g-dev libffi-dev libgmp-dev wget opam
-RUN apt update -y
+# # python ライブラリのインストール
+# RUN python -m pip install pandas
+# RUN python -m pip install numpy
+# RUN python -m pip install matplotlib
+# RUN python -m pip install jupyterlab
+# RUN python -m pip install notebook
+
+# RUN apt-get install -y zlib1g-dev libffi-dev libgmp-dev wget opam
+# RUN apt update -y
 
 # RUN opam init -y &&\
 # opam install tuareg ocp-indent utop merlin user-setup -y &&\
