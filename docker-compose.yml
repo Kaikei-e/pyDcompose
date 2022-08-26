@@ -7,7 +7,6 @@ services:
     stdin_open: true
     tty: true
     working_dir: /apps
-    command:  /bin/bash
     environment:
       TZ: Asia/Tokyo
     ports:

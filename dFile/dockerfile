@@ -25,3 +25,6 @@ ADD ./apps /apps
 # RUN grep Topfind.log ~/.ocamlinit || echo 'Topfind.log:=ignore;;' >> ~/.ocamlinit  # Suppress logging of topfind (recommended but not necessary)
 # RUN ocaml-jupyter-opam-genspec
 # RUN jupyter kernelspec install [ --user ] --name "ocaml-jupyter-$(opam var switch)" "$(opam var share)/jupyter"
+
+
+EXPOSE 9020
